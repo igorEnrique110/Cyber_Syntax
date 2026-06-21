@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Syntax</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="matrix-background" aria-hidden="true"></div>
+
+    <main class="app-shell">
+        <section id="auth-screen" class="screen auth-screen">
+            <div class="brand-block">
+                <div class="brand-echo" aria-hidden="true">
+                    <span>CYBER</span>
+                    <span>SYNTAX</span>
+                    <span>CYBER</span>
+                    <span>SYNTAX</span>
+                    <span>CYBER</span>
+                    <span>SYNTAX</span>
+                    <span>CYBER</span>
+                    <span>SYNTAX</span>
+                </div>
+                <p class="eyebrow">cyber://syntax</p>
+                <h1>Cyber Syntax</h1>
+                <p class="brand-copy">Monte códigos, avance na linguagem escolhida e entre no ranking por pontuação.</p>
+            </div>
+
+            <form id="auth-form" class="terminal-panel auth-panel">
+                <div class="panel-title">Acesso do jogador</div>
+                <label>
+                    Nome
+                    <input id="auth-name" type="text" autocomplete="name" placeholder="Seu nome">
+                </label>
+                <label>
+                    Email
+                    <input id="auth-email" type="text" inputmode="email" autocomplete="email" placeholder="voce@email.com" required>
+                </label>
+                <label>
+                    Senha
+                    <input id="auth-password" type="password" autocomplete="current-password" placeholder="minimo 4 caracteres" required>
+                </label>
+                <p id="auth-message" class="message"></p>
+                <div class="auth-actions">
+                    <button class="btn primary" type="submit">Entrar</button>
+                    <button class="btn ghost" type="button" id="btn-register">Cadastrar</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="menu-screen" class="screen hidden">
+            <header class="topbar">
+                <button id="btn-back-previous" class="icon-btn" type="button" title="Voltar para a tela anterior">&larr;</button>
+                <div>
+                    <p class="eyebrow">main://menu</p>
+                    <h1>Central do jogador</h1>
+                </div>
+                <div class="player-strip">
+                    <span id="menu-player">Jogador</span>
+                    <span id="menu-points">0 pts</span>
+                    <span id="menu-coins">0 moedas</span>
+                    <span id="menu-lives">0 vidas</span>
+                    <button id="btn-logout" class="btn ghost" type="button">Sair</button>
+                </div>
+            </header>
+
+            <div class="menu-grid">
+                <section class="terminal-panel ranking-panel">
+                    <div class="panel-title">Ranking</div>
+                    <ol id="ranking-list" class="ranking-list"></ol>
+                </section>
+
+                <section class="terminal-panel status-panel">
+                    <div class="panel-title">Status do jogador</div>
+                    <div id="language-status-list" class="language-status-list"></div>
+                </section>
+
+                <section class="terminal-panel modules-panel">
+                    <div class="panel-title">Módulos da linguagem</div>
+                    <div id="language-options" class="language-options"></div>
+                    <div id="modules-list" class="modules-list"></div>
+                </section>
+            </div>
+        </section>
+
+        <section id="game-screen" class="screen hidden">
+            <header class="game-header">
+                <button id="btn-back-menu" class="icon-btn" title="Voltar ao menu">&larr;</button>
+                <div class="level-info">
+                    
+                    <h1 id="level-title">Fase</h1>
+                    <p id="level-description">Organize o código.</p>
+                </div>
+                <div class="status-cluster">
+                    <span id="game-points">0 pts</span>
+                    <span id="game-coins">0 moedas</span>
+                    <span id="game-lives">0 vidas</span>
+                    <span id="timer">00:00</span>
+                </div>
+            </header>
+
+            <section class="game-layout">
+                <aside class="terminal-panel side-panel">
+                    <div class="panel-title">Recursos</div>
+                    <p id="level-meta" class="level-meta"></p>
+                    <button id="btn-hint" class="btn secondary" type="button">Comprar dica</button>
+                    <button id="btn-buy-time" class="btn ghost" type="button">Comprar +40s</button>
+                    <button id="btn-buy-life" class="btn ghost" type="button">Comprar vida</button>
+                    <button id="btn-skip" class="btn danger" type="button">Pular fase</button>
+                    <div id="hint-box" class="hint-box hidden"></div>
+                </aside>
+
+                <div class="board-grid">
+                    <section class="code-window">
+                        <div class="window-bar">
+                            <span></span><span></span><span></span>
+                            <strong>Codigo embaralhado</strong>
+                        </div>
+                        <div id="source-lines" class="lines-container"></div>
+                    </section>
+
+                    <section class="code-window">
+                        <div class="window-bar">
+                            <span></span><span></span><span></span>
+                            <strong>Area de solucao</strong>
+                        </div>
+                        <div id="solution-area" class="lines-container solution-dropzone">
+                            <p class="placeholder-text">Clique ou arraste as linhas para ca.</p>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <footer class="game-footer">
+                <div class="edit-controls">
+                    <button id="btn-line-up" class="icon-btn" title="Subir linha selecionada">&uarr;</button>
+                    <button id="btn-line-down" class="icon-btn" title="Descer linha selecionada">&darr;</button>
+                    <button id="btn-line-remove" class="icon-btn" title="Remover linha selecionada">&larrhk;</button>
+                    <span id="edit-message" class="edit-message" aria-live="polite"></span>
+                </div>
+                <button id="btn-reset" class="btn ghost" type="button">Reiniciar</button>
+                <button id="btn-verify" class="btn primary" type="button">Verificar</button>
+            </footer>
+        </section>
+    </main>
+
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-content terminal-panel">
+            <div class="panel-title">Sistema</div>
+            <h2 id="modal-title">Mensagem</h2>
+            <p id="modal-message"></p>
+            <div id="modal-extra" class="modal-extra hidden"></div>
+            <div class="modal-actions">
+                <button id="modal-cancel-btn" class="btn ghost hidden" type="button">Cancelar</button>
+                <button id="modal-btn" class="btn primary" type="button">Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
